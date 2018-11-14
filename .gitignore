@@ -112,3 +112,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#coins project specific ignored files
+
+#Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+#Python
+
+#Django
