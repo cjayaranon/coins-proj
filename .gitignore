@@ -114,6 +114,7 @@ dmypy.json
 .pyre/
 
 #coins project specific ignored files
+/static
 
 #Sass
 .sass-cache/

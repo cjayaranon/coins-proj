@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import coins.views as mainView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', mainView.Login.as_view(), name="login"),
+    path('dashboard/', mainView.Dashboard.as_view(), name="dashboard"),
 ]
