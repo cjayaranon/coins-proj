@@ -122,5 +122,5 @@ dmypy.json
 *.scss.map
 
 #Python
-
+/__pycache__
 #Django
