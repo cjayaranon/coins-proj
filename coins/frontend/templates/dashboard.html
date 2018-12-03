@@ -1,0 +1,231 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+
+{% block css %}
+<link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap/dashboard.css' %}" rel="stylesheet">
+<link href="{% static 'node_modules/fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+<!--CUSTOM CSS FOR THIS TEMPLATE-->
+<link href="{% static 'css/custom-styles/announcement.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/custom-styles/server-detail-styles.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+<!--BREADCRUMB-->
+{% block breadcrumb %}
+{{ block.super}}<li class="breadcrumb-item active">Dashboard</li>
+{% endblock breadcrumb %}
+<!--END BREADCRUMB-->
+
+{% block content %}
+<title>AMPC|Dashboard</title>
+<div class="row">
+    <div class="col-md-8">
+        <div class="welcome-text">
+            <h2 class="h2">Welcome!</h2>
+            <p>{% lorem 1 p random %}</p>
+        </div>
+<!--ANNOUNCEMENTS-->
+        {% for items in announce %}
+        {% if items.date_pub < date_today %}
+        <hr>
+        <div class="card shadow">
+            <div class="card-body" id="announce-title">
+                <div class="navbar custom-header">
+                    <h4 class="card-title">{{items.title}}</h4>
+                </div>
+                <div class="card-text text-justify" id="announce-text">
+                    &nbsp;
+                    <p>{{items.input_text|ljust:"10"}}</p>
+                </div>
+                <div id="author">
+                    <span class="badge custom-badge">Posted</span>
+                    <span>{{items.date_pub}}</span>
+                    <br>
+                    <span class="badge custom-badge">Posted by</span>
+                    <span>{{items.author}}</span>
+                    <br>
+                    <span class="badge custom-badge">Last Edited</span>
+                    <span>{{items.last_modified}}</span>
+                </div>
+            </div>
+        </div>
+        {% else %}
+
+        {% endif %}
+        {% endfor %}
+<!--END ANNOUNCEMENTS-->
+        <hr>
+        <div>
+            <a href="#" class="btn custom-btn-blue btn-block shadow" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-hourglass-start"></i>
+                Start your Day
+            </a>
+            <a href="#" class="btn btn-outline-secondary btn-block shadow">
+                <i class="fas fa-hourglass-end"></i>
+                End your Day
+            </a>
+        </div>
+        &nbsp;
+        &nbsp;
+    </div>
+    <div class="col-md-4">
+        &nbsp;
+        <p>
+            <span class="fas fa-clock fa-lg fa-fw"></span>
+            <label id="timeS" class="custom-clock"></label>
+        </p>
+        <p><i class="fas fa-calendar-check fa-lg fa-fw"></i>{% now "F j Y" %}</p>
+    </div>
+</div>
+
+
+<!--          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+
+<!--
+          <h2>Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                  <td>dolor</td>
+                  <td>sit</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                </tr>
+                <tr>
+                  <td>1,005</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                  <td>sem</td>
+                  <td>at</td>
+                </tr>
+                <tr>
+                  <td>1,006</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                  <td>imperdiet</td>
+                  <td>Duis</td>
+                </tr>
+                <tr>
+                  <td>1,007</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                  <td>Praesent</td>
+                  <td>mauris</td>
+                </tr>
+                <tr>
+                  <td>1,008</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                  <td>tellus</td>
+                  <td>sed</td>
+                </tr>
+                <tr>
+                  <td>1,009</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                  <td>porta</td>
+                  <td>Mauris</td>
+                </tr>
+                <tr>
+                  <td>1,010</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                  <td>lacinia</td>
+                  <td>arcu</td>
+                </tr>
+                <tr>
+                  <td>1,011</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                  <td>Class</td>
+                  <td>aptent</td>
+                </tr>
+                <tr>
+                  <td>1,012</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                  <td>ad</td>
+                  <td>litora</td>
+                </tr>
+                <tr>
+                  <td>1,013</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                  <td>conubia</td>
+                  <td>nostra</td>
+                </tr>
+                <tr>
+                  <td>1,014</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                  <td>himenaeos</td>
+                  <td>Curabitur</td>
+                </tr>
+                <tr>
+                  <td>1,015</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                  <td>in</td>
+                  <td>libero</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+-->
+
+<!--
+    <script>
+        window.onload = setupRefresh();
+
+        function setupRefresh(){
+            setInterval("refreshBlock();", 1000);
+        }
+        function refreshBlock(){
+            var d = new Date();
+            document.getElementById('timeS').innerHTML = d.toLocaleTimeString();
+        }
+    </script>
+-->
+    <script src="{% static 'js/server-time.js' %}"></script>
+{% endblock %}
