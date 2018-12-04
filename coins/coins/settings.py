@@ -57,7 +57,7 @@ ROOT_URLCONF = 'coins.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend','templates',)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +83,7 @@ DATABASES = {
         'USER': "root",
         'PASSWORD': "hj^yr490Tweh@ty4",
         'HOST': "localhost",
-        'PORT': "3307",
+        'PORT': "3306",
     }
 }
 
@@ -125,3 +125,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL.strip("/"))
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend', 'static')]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL.strip("/"))
+MEDIAFILES_DIRS = [os.path.join(BASE_DIR, 'media', 'clients')]
